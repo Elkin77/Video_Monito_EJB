@@ -6,8 +6,8 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -92,12 +92,24 @@ public class Tblcliente implements Serializable {
     @Column(name = "puntos")
     private int puntos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblcliente")
-    private Collection<Tbltransaccion> tbltransaccionCollection;
+    private List<Tbltransaccion> tbltransaccionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblcliente")
-    private Collection<Tblvaloracion> tblvaloracionCollection;
+    private List<Tblvaloracion> tblvaloracionList;
 
     public Tblcliente() {
     }
+
+    public Tblcliente(String nombre, String apellido, String password, String documento, Date fechaIngreso, String correo, String referido, int puntos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.password = password;
+        this.documento = documento;
+        this.fechaIngreso = fechaIngreso;
+        this.correo = correo;
+        this.referido = referido;
+        this.puntos = puntos;
+    }
+    
 
     public Tblcliente(Integer idCliente) {
         this.idCliente = idCliente;
@@ -188,21 +200,21 @@ public class Tblcliente implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tbltransaccion> getTbltransaccionCollection() {
-        return tbltransaccionCollection;
+    public List<Tbltransaccion> getTbltransaccionList() {
+        return tbltransaccionList;
     }
 
-    public void setTbltransaccionCollection(Collection<Tbltransaccion> tbltransaccionCollection) {
-        this.tbltransaccionCollection = tbltransaccionCollection;
+    public void setTbltransaccionList(List<Tbltransaccion> tbltransaccionList) {
+        this.tbltransaccionList = tbltransaccionList;
     }
 
     @XmlTransient
-    public Collection<Tblvaloracion> getTblvaloracionCollection() {
-        return tblvaloracionCollection;
+    public List<Tblvaloracion> getTblvaloracionList() {
+        return tblvaloracionList;
     }
 
-    public void setTblvaloracionCollection(Collection<Tblvaloracion> tblvaloracionCollection) {
-        this.tblvaloracionCollection = tblvaloracionCollection;
+    public void setTblvaloracionList(List<Tblvaloracion> tblvaloracionList) {
+        this.tblvaloracionList = tblvaloracionList;
     }
 
     @Override

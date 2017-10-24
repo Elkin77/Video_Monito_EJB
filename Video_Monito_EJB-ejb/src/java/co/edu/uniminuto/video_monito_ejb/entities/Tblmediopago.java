@@ -6,7 +6,7 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -77,7 +77,7 @@ public class Tblmediopago implements Serializable {
     @Column(name = "yearVencimiento")
     private String yearVencimiento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblmediopago")
-    private Collection<Tbltransaccion> tbltransaccionCollection;
+    private List<Tbltransaccion> tbltransaccionList;
 
     public Tblmediopago() {
     }
@@ -153,12 +153,12 @@ public class Tblmediopago implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tbltransaccion> getTbltransaccionCollection() {
-        return tbltransaccionCollection;
+    public List<Tbltransaccion> getTbltransaccionList() {
+        return tbltransaccionList;
     }
 
-    public void setTbltransaccionCollection(Collection<Tbltransaccion> tbltransaccionCollection) {
-        this.tbltransaccionCollection = tbltransaccionCollection;
+    public void setTbltransaccionList(List<Tbltransaccion> tbltransaccionList) {
+        this.tbltransaccionList = tbltransaccionList;
     }
 
     @Override

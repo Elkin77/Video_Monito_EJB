@@ -6,7 +6,7 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -66,7 +66,7 @@ public class Tblcoleccion implements Serializable {
     @Column(name = "Estado")
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblcoleccion")
-    private Collection<Tblcoleccionvideo> tblcoleccionvideoCollection;
+    private List<Tblcoleccionvideo> tblcoleccionvideoList;
 
     public Tblcoleccion() {
     }
@@ -124,12 +124,12 @@ public class Tblcoleccion implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tblcoleccionvideo> getTblcoleccionvideoCollection() {
-        return tblcoleccionvideoCollection;
+    public List<Tblcoleccionvideo> getTblcoleccionvideoList() {
+        return tblcoleccionvideoList;
     }
 
-    public void setTblcoleccionvideoCollection(Collection<Tblcoleccionvideo> tblcoleccionvideoCollection) {
-        this.tblcoleccionvideoCollection = tblcoleccionvideoCollection;
+    public void setTblcoleccionvideoList(List<Tblcoleccionvideo> tblcoleccionvideoList) {
+        this.tblcoleccionvideoList = tblcoleccionvideoList;
     }
 
     @Override

@@ -5,16 +5,12 @@
  */
 package co.edu.uniminuto.video_monito_ejb.controlador;
 
-import co.edu.uniminuto.video_monito_ejb.entities.Tblpersona;
-import co.edu.uniminuto.video_monito_ejb.entities.TblpersonaFacade;
+import co.edu.uniminuto.video_monito_ejb.entities.Tblclasificacion;
+import co.edu.uniminuto.video_monito_ejb.entities.Tblproveedor;
+import co.edu.uniminuto.video_monito_ejb.entities.TblproveedorFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ep77
  */
-public class servlet extends HttpServlet {
+public class Proveedores extends HttpServlet {
 
     @EJB
-    private TblpersonaFacade tblpersonaFacade;
+    private TblproveedorFacade tblproveedorFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,21 +35,17 @@ public class servlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NamingException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet servlet</title>");
+            out.println("<title>Servlet Proveedores</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1> hjolaa </h1>");
-            tblpersonaFacade = (TblpersonaFacade) new InitialContext().lookup("java:module/TblpersonaFacade");
-            List<Tblpersona> misPersonas = tblpersonaFacade.findAll();
-            out.println("<h1>" + misPersonas.size()+ "</h1>");
-            out.println("<h1>Servlet servlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Proveedores at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,13 +63,9 @@ public class servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(servlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        request.getRequestDispatcher("./proveedores.jsp").forward(request, response);
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -89,11 +77,18 @@ public class servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(servlet.class.getName()).log(Level.SEVERE, null, ex);
+        String id = request.getParameter("id");
+        String nit = request.getParameter("nit");
+        String nombres = request.getParameter("nombre");
+        String sede = request.getParameter("sede");
+        String password = request.getParameter("password");
+
+        if (id == null || id.isEmpty()) {
+            Tblproveedor proveedor = new Tblproveedor(nit, nombres, sede, password);
+            tblproveedorFacade.create(proveedor);
+
         }
+        request.getRequestDispatcher("./proveedores.jsp").forward(request, response);
     }
 
     /**

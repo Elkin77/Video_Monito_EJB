@@ -6,7 +6,7 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -64,7 +64,7 @@ public class Tblserie implements Serializable {
     @Column(name = "Fecha_Final")
     private String fechaFinal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblserie")
-    private Collection<Tblvideoserie> tblvideoserieCollection;
+    private List<Tblvideoserie> tblvideoserieList;
 
     public Tblserie() {
     }
@@ -127,12 +127,12 @@ public class Tblserie implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tblvideoserie> getTblvideoserieCollection() {
-        return tblvideoserieCollection;
+    public List<Tblvideoserie> getTblvideoserieList() {
+        return tblvideoserieList;
     }
 
-    public void setTblvideoserieCollection(Collection<Tblvideoserie> tblvideoserieCollection) {
-        this.tblvideoserieCollection = tblvideoserieCollection;
+    public void setTblvideoserieList(List<Tblvideoserie> tblvideoserieList) {
+        this.tblvideoserieList = tblvideoserieList;
     }
 
     @Override

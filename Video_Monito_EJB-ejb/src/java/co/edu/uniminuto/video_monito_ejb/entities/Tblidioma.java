@@ -6,7 +6,7 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,10 +60,17 @@ public class Tblidioma implements Serializable {
     @Column(name = "doblaje")
     private String doblaje;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblidioma")
-    private Collection<Tblvideoidioma> tblvideoidiomaCollection;
+    private List<Tblvideoidioma> tblvideoidiomaList;
 
     public Tblidioma() {
     }
+
+    public Tblidioma(String lenguaje, String subtitulos, String doblaje) {
+        this.lenguaje = lenguaje;
+        this.subtitulos = subtitulos;
+        this.doblaje = doblaje;
+    }
+    
 
     public Tblidioma(Integer idIdioma) {
         this.idIdioma = idIdioma;
@@ -109,12 +116,12 @@ public class Tblidioma implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tblvideoidioma> getTblvideoidiomaCollection() {
-        return tblvideoidiomaCollection;
+    public List<Tblvideoidioma> getTblvideoidiomaList() {
+        return tblvideoidiomaList;
     }
 
-    public void setTblvideoidiomaCollection(Collection<Tblvideoidioma> tblvideoidiomaCollection) {
-        this.tblvideoidiomaCollection = tblvideoidiomaCollection;
+    public void setTblvideoidiomaList(List<Tblvideoidioma> tblvideoidiomaList) {
+        this.tblvideoidiomaList = tblvideoidiomaList;
     }
 
     @Override

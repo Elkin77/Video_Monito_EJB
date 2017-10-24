@@ -6,8 +6,7 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,8 +21,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -43,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tblvideo.findByDuracion", query = "SELECT t FROM Tblvideo t WHERE t.duracion = :duracion"),
     @NamedQuery(name = "Tblvideo.findByTituloVideo", query = "SELECT t FROM Tblvideo t WHERE t.tituloVideo = :tituloVideo"),
     @NamedQuery(name = "Tblvideo.findByDescripcion", query = "SELECT t FROM Tblvideo t WHERE t.descripcion = :descripcion"),
-    @NamedQuery(name = "Tblvideo.findByImagen", query = "SELECT t FROM Tblvideo t WHERE t.imagen = :imagen")})
+    @NamedQuery(name = "Tblvideo.findByImagen", query = "SELECT t FROM Tblvideo t WHERE t.imagen = :imagen"),
+    @NamedQuery(name = "Tblvideo.findByVideo", query = "SELECT t FROM Tblvideo t WHERE t.video = :video")})
 public class Tblvideo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,13 +52,14 @@ public class Tblvideo implements Serializable {
     private Integer idVideo;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "yearProduccion")
-    private short yearProduccion;
+    private String yearProduccion;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "duracion")
-    @Temporal(TemporalType.TIME)
-    private Date duracion;
+    private String duracion;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
@@ -76,16 +75,21 @@ public class Tblvideo implements Serializable {
     @Size(min = 1, max = 1024)
     @Column(name = "Imagen")
     private String imagen;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "video")
+    private String video;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblvideo")
-    private Collection<Tbltransaccion> tbltransaccionCollection;
+    private List<Tbltransaccion> tbltransaccionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblvideo")
-    private Collection<Tblvaloracion> tblvaloracionCollection;
+    private List<Tblvaloracion> tblvaloracionList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "tblvideo")
     private Tblvideopersona tblvideopersona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblvideo")
-    private Collection<Tblcoleccionvideo> tblcoleccionvideoCollection;
+    private List<Tblcoleccionvideo> tblcoleccionvideoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblvideo")
-    private Collection<Tblvideoidioma> tblvideoidiomaCollection;
+    private List<Tblvideoidioma> tblvideoidiomaList;
     @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false)
     private Tblcategoria idCategoria;
@@ -96,22 +100,36 @@ public class Tblvideo implements Serializable {
     @ManyToOne(optional = false)
     private Tblproveedor idProveedor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblvideo")
-    private Collection<Tblvideoserie> tblvideoserieCollection;
+    private List<Tblvideoserie> tblvideoserieList;
 
     public Tblvideo() {
     }
+
+    public Tblvideo(String yearProduccion, String duracion, String tituloVideo, String descripcion, String imagen, String video, Tblcategoria idCategoria, Tblclasificacion idClasificacion, Tblproveedor idProveedor) {
+        this.yearProduccion = yearProduccion;
+        this.duracion = duracion;
+        this.tituloVideo = tituloVideo;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.video = video;
+        this.idCategoria = idCategoria;
+        this.idClasificacion = idClasificacion;
+        this.idProveedor = idProveedor;
+    }
+    
 
     public Tblvideo(Integer idVideo) {
         this.idVideo = idVideo;
     }
 
-    public Tblvideo(Integer idVideo, short yearProduccion, Date duracion, String tituloVideo, String descripcion, String imagen) {
+    public Tblvideo(Integer idVideo, String yearProduccion, String duracion, String tituloVideo, String descripcion, String imagen, String video) {
         this.idVideo = idVideo;
         this.yearProduccion = yearProduccion;
         this.duracion = duracion;
         this.tituloVideo = tituloVideo;
         this.descripcion = descripcion;
         this.imagen = imagen;
+        this.video = video;
     }
 
     public Integer getIdVideo() {
@@ -122,19 +140,19 @@ public class Tblvideo implements Serializable {
         this.idVideo = idVideo;
     }
 
-    public short getYearProduccion() {
+    public String getYearProduccion() {
         return yearProduccion;
     }
 
-    public void setYearProduccion(short yearProduccion) {
+    public void setYearProduccion(String yearProduccion) {
         this.yearProduccion = yearProduccion;
     }
 
-    public Date getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Date duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 
@@ -162,22 +180,30 @@ public class Tblvideo implements Serializable {
         this.imagen = imagen;
     }
 
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
     @XmlTransient
-    public Collection<Tbltransaccion> getTbltransaccionCollection() {
-        return tbltransaccionCollection;
+    public List<Tbltransaccion> getTbltransaccionList() {
+        return tbltransaccionList;
     }
 
-    public void setTbltransaccionCollection(Collection<Tbltransaccion> tbltransaccionCollection) {
-        this.tbltransaccionCollection = tbltransaccionCollection;
+    public void setTbltransaccionList(List<Tbltransaccion> tbltransaccionList) {
+        this.tbltransaccionList = tbltransaccionList;
     }
 
     @XmlTransient
-    public Collection<Tblvaloracion> getTblvaloracionCollection() {
-        return tblvaloracionCollection;
+    public List<Tblvaloracion> getTblvaloracionList() {
+        return tblvaloracionList;
     }
 
-    public void setTblvaloracionCollection(Collection<Tblvaloracion> tblvaloracionCollection) {
-        this.tblvaloracionCollection = tblvaloracionCollection;
+    public void setTblvaloracionList(List<Tblvaloracion> tblvaloracionList) {
+        this.tblvaloracionList = tblvaloracionList;
     }
 
     public Tblvideopersona getTblvideopersona() {
@@ -189,21 +215,21 @@ public class Tblvideo implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tblcoleccionvideo> getTblcoleccionvideoCollection() {
-        return tblcoleccionvideoCollection;
+    public List<Tblcoleccionvideo> getTblcoleccionvideoList() {
+        return tblcoleccionvideoList;
     }
 
-    public void setTblcoleccionvideoCollection(Collection<Tblcoleccionvideo> tblcoleccionvideoCollection) {
-        this.tblcoleccionvideoCollection = tblcoleccionvideoCollection;
+    public void setTblcoleccionvideoList(List<Tblcoleccionvideo> tblcoleccionvideoList) {
+        this.tblcoleccionvideoList = tblcoleccionvideoList;
     }
 
     @XmlTransient
-    public Collection<Tblvideoidioma> getTblvideoidiomaCollection() {
-        return tblvideoidiomaCollection;
+    public List<Tblvideoidioma> getTblvideoidiomaList() {
+        return tblvideoidiomaList;
     }
 
-    public void setTblvideoidiomaCollection(Collection<Tblvideoidioma> tblvideoidiomaCollection) {
-        this.tblvideoidiomaCollection = tblvideoidiomaCollection;
+    public void setTblvideoidiomaList(List<Tblvideoidioma> tblvideoidiomaList) {
+        this.tblvideoidiomaList = tblvideoidiomaList;
     }
 
     public Tblcategoria getIdCategoria() {
@@ -231,12 +257,12 @@ public class Tblvideo implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tblvideoserie> getTblvideoserieCollection() {
-        return tblvideoserieCollection;
+    public List<Tblvideoserie> getTblvideoserieList() {
+        return tblvideoserieList;
     }
 
-    public void setTblvideoserieCollection(Collection<Tblvideoserie> tblvideoserieCollection) {
-        this.tblvideoserieCollection = tblvideoserieCollection;
+    public void setTblvideoserieList(List<Tblvideoserie> tblvideoserieList) {
+        this.tblvideoserieList = tblvideoserieList;
     }
 
     @Override

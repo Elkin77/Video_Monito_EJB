@@ -6,7 +6,7 @@
 package co.edu.uniminuto.video_monito_ejb.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -66,10 +66,18 @@ public class Tblproveedor implements Serializable {
     @Column(name = "password")
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProveedor")
-    private Collection<Tblvideo> tblvideoCollection;
+    private List<Tblvideo> tblvideoList;
 
     public Tblproveedor() {
     }
+
+    public Tblproveedor(String nit, String nombres, String sede, String password) {
+        this.nit = nit;
+        this.nombres = nombres;
+        this.sede = sede;
+        this.password = password;
+    }
+    
 
     public Tblproveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
@@ -124,12 +132,12 @@ public class Tblproveedor implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tblvideo> getTblvideoCollection() {
-        return tblvideoCollection;
+    public List<Tblvideo> getTblvideoList() {
+        return tblvideoList;
     }
 
-    public void setTblvideoCollection(Collection<Tblvideo> tblvideoCollection) {
-        this.tblvideoCollection = tblvideoCollection;
+    public void setTblvideoList(List<Tblvideo> tblvideoList) {
+        this.tblvideoList = tblvideoList;
     }
 
     @Override
