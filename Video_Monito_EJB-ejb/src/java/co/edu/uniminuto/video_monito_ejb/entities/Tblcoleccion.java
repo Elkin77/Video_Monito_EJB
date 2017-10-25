@@ -71,6 +71,15 @@ public class Tblcoleccion implements Serializable {
     public Tblcoleccion() {
     }
 
+    public Tblcoleccion(String coleccion, String version, String fechacreacion, String estado) {
+        this.coleccion = coleccion;
+        this.version = version;
+        this.fechacreacion = fechacreacion;
+        this.estado = estado;
+    }
+    
+    
+
     public Tblcoleccion(Integer idColeccion) {
         this.idColeccion = idColeccion;
     }

@@ -42,6 +42,14 @@ public class Tblcoleccionvideo implements Serializable {
     public Tblcoleccionvideo() {
     }
 
+    public Tblcoleccionvideo(Tblcoleccion tblcoleccion, Tblvideo tblvideo) {
+        this.tblcoleccion = tblcoleccion;
+        this.tblvideo = tblvideo;
+    }
+
+    
+    
+
     public Tblcoleccionvideo(TblcoleccionvideoPK tblcoleccionvideoPK) {
         this.tblcoleccionvideoPK = tblcoleccionvideoPK;
     }

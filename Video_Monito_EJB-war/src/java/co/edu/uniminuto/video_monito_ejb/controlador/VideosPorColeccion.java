@@ -5,18 +5,17 @@
  */
 package co.edu.uniminuto.video_monito_ejb.controlador;
 
-import static co.edu.uniminuto.video_monito_ejb.entities.Tblcategoria_.descripcion;
-import co.edu.uniminuto.video_monito_ejb.entities.Tblserie;
-import co.edu.uniminuto.video_monito_ejb.entities.TblserieFacade;
+import co.edu.uniminuto.video_monito_ejb.entities.Tblcoleccion;
+import co.edu.uniminuto.video_monito_ejb.entities.TblcoleccionFacade;
+import co.edu.uniminuto.video_monito_ejb.entities.Tblcoleccionvideo;
+import co.edu.uniminuto.video_monito_ejb.entities.TblcoleccionvideoFacade;
+import co.edu.uniminuto.video_monito_ejb.entities.TblcoleccionvideoPK;
 import co.edu.uniminuto.video_monito_ejb.entities.Tblvideo;
 import co.edu.uniminuto.video_monito_ejb.entities.TblvideoFacade;
-import co.edu.uniminuto.video_monito_ejb.entities.Tblvideoserie;
-import co.edu.uniminuto.video_monito_ejb.entities.TblvideoserieFacade;
 import co.edu.uniminuto.video_monito_ejb.entities.TblvideoseriePK;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Vector;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,19 +26,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ep77
  */
-public class VideosPorSerie extends HttpServlet {
+public class VideosPorColeccion extends HttpServlet {
 
     @EJB
-    private TblvideoserieFacade tblvideoserieFacade;
+    private TblcoleccionvideoFacade tblcoleccionvideoFacade;
 
     @EJB
-    private TblserieFacade tblserieFacade;
+    private TblcoleccionFacade tblcoleccionFacade;
 
     @EJB
     private TblvideoFacade tblvideoFacade;
+    
 
-    
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -54,14 +52,13 @@ public class VideosPorSerie extends HttpServlet {
         List<Tblvideo> listaVideos = (List<Tblvideo>) tblvideoFacade.findAll();
         request.setAttribute("listaCat", listaVideos);
 
-        List<Tblserie> listaSeries = (List<Tblserie>) tblserieFacade.findAll();
-        request.setAttribute("listaClasifi", listaSeries);
+        List<Tblcoleccion> listaColecciones = (List<Tblcoleccion>) tblcoleccionFacade.findAll();
+        request.setAttribute("listaClasifi", listaColecciones);
 
         
-        request.getRequestDispatcher("./videoEnSerie.jsp").forward(request, response);
+        request.getRequestDispatcher("./videoEnColeccion.jsp").forward(request, response);
 
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -90,18 +87,17 @@ public class VideosPorSerie extends HttpServlet {
             throws ServletException, IOException {
         String idRegistro = request.getParameter("id");
         Tblvideo video = tblvideoFacade.find(Integer.parseInt(request.getParameter("videoId")));
-        Tblserie serie = tblserieFacade.find(Integer.parseInt(request.getParameter("serieId")));
+        Tblcoleccion coleccion = tblcoleccionFacade.find(Integer.parseInt(request.getParameter("coleccionId")));
         
         if (idRegistro == null || idRegistro.isEmpty()) {
-            TblvideoseriePK videoEnSeriePK=new TblvideoseriePK(video.getIdVideo(),serie.getIdSerie());
-            Tblvideoserie videoEnSerie = new Tblvideoserie(videoEnSeriePK);
-            tblvideoserieFacade.create(videoEnSerie);
+            TblcoleccionvideoPK videoEnColeccionPK=new TblcoleccionvideoPK(video.getIdVideo(),coleccion.getIdColeccion());
+            Tblcoleccionvideo videoEnColeccion = new Tblcoleccionvideo(videoEnColeccionPK);
+            tblcoleccionvideoFacade.create(videoEnColeccion);
             
 
         }
-        request.getRequestDispatcher("./videoEnSerie.jsp");
+        request.getRequestDispatcher("./videoEnColeccion.jsp");
     }
-    
     /**
      * Returns a short description of the servlet.
      *

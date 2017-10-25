@@ -33,6 +33,12 @@ public class TblcoleccionvideoPK implements Serializable {
     public TblcoleccionvideoPK() {
     }
 
+    public TblcoleccionvideoPK(int idVideo, int idColeccion) {
+        this.idVideo = idVideo;
+        this.idColeccion = idColeccion;
+    }
+    
+
     public TblcoleccionvideoPK(int idColeccionVideo, int idVideo, int idColeccion) {
         this.idColeccionVideo = idColeccionVideo;
         this.idVideo = idVideo;

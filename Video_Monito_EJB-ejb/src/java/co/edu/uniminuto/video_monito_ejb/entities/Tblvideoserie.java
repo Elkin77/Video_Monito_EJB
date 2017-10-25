@@ -42,6 +42,12 @@ public class Tblvideoserie implements Serializable {
     public Tblvideoserie() {
     }
 
+    public Tblvideoserie(Tblserie tblserie, Tblvideo tblvideo) {
+        this.tblserie = tblserie;
+        this.tblvideo = tblvideo;
+    }
+
+    
     public Tblvideoserie(TblvideoseriePK tblvideoseriePK) {
         this.tblvideoseriePK = tblvideoseriePK;
     }

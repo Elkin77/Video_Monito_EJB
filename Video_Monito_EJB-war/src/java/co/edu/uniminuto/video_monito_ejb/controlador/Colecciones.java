@@ -5,18 +5,15 @@
  */
 package co.edu.uniminuto.video_monito_ejb.controlador;
 
-import static co.edu.uniminuto.video_monito_ejb.entities.Tblcategoria_.descripcion;
+import static co.edu.uniminuto.video_monito_ejb.entities.Tblcliente_.nombre;
+import co.edu.uniminuto.video_monito_ejb.entities.Tblcoleccion;
+import co.edu.uniminuto.video_monito_ejb.entities.TblcoleccionFacade;
 import co.edu.uniminuto.video_monito_ejb.entities.Tblserie;
-import co.edu.uniminuto.video_monito_ejb.entities.TblserieFacade;
-import co.edu.uniminuto.video_monito_ejb.entities.Tblvideo;
-import co.edu.uniminuto.video_monito_ejb.entities.TblvideoFacade;
-import co.edu.uniminuto.video_monito_ejb.entities.Tblvideoserie;
-import co.edu.uniminuto.video_monito_ejb.entities.TblvideoserieFacade;
-import co.edu.uniminuto.video_monito_ejb.entities.TblvideoseriePK;
+import static co.edu.uniminuto.video_monito_ejb.entities.Tblserie_.fechaInicio;
+import static co.edu.uniminuto.video_monito_ejb.entities.Tblserie_.temporada;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Vector;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,19 +24,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ep77
  */
-public class VideosPorSerie extends HttpServlet {
+public class Colecciones extends HttpServlet {
 
     @EJB
-    private TblvideoserieFacade tblvideoserieFacade;
+    private TblcoleccionFacade tblcoleccionFacade;
 
-    @EJB
-    private TblserieFacade tblserieFacade;
-
-    @EJB
-    private TblvideoFacade tblvideoFacade;
-
-    
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -51,15 +40,19 @@ public class VideosPorSerie extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Tblvideo> listaVideos = (List<Tblvideo>) tblvideoFacade.findAll();
-        request.setAttribute("listaCat", listaVideos);
-
-        List<Tblserie> listaSeries = (List<Tblserie>) tblserieFacade.findAll();
-        request.setAttribute("listaClasifi", listaSeries);
-
-        
-        request.getRequestDispatcher("./videoEnSerie.jsp").forward(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Colecciones</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Colecciones at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +67,15 @@ public class VideosPorSerie extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        this.cargarColecciones(request, response);
+    }
+    
+    private void  cargarColecciones (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+       
+        
+        List<Tblcoleccion> series =tblcoleccionFacade.findAll();
+        request.setAttribute("colecciones", series);
+        request.getRequestDispatcher("./colecciones.jsp").forward(request, response);
     }
 
     /**
@@ -88,20 +89,21 @@ public class VideosPorSerie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idRegistro = request.getParameter("id");
-        Tblvideo video = tblvideoFacade.find(Integer.parseInt(request.getParameter("videoId")));
-        Tblserie serie = tblserieFacade.find(Integer.parseInt(request.getParameter("serieId")));
+        String id = request.getParameter("id");
+        String coleccion = request.getParameter("coleccion");
+        String version = request.getParameter("version");
+        String fecha_creacion = request.getParameter("fechaCreacion");
+        String estado = request.getParameter("estado");
         
-        if (idRegistro == null || idRegistro.isEmpty()) {
-            TblvideoseriePK videoEnSeriePK=new TblvideoseriePK(video.getIdVideo(),serie.getIdSerie());
-            Tblvideoserie videoEnSerie = new Tblvideoserie(videoEnSeriePK);
-            tblvideoserieFacade.create(videoEnSerie);
-            
 
+        if (id == null || id.isEmpty()) {
+            Tblcoleccion colecc = new Tblcoleccion(coleccion, version, fecha_creacion, estado);
+            tblcoleccionFacade.create(colecc);
+            
         }
-        request.getRequestDispatcher("./videoEnSerie.jsp");
+        this.cargarColecciones(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

@@ -86,6 +86,16 @@ public class Tblpersona implements Serializable {
     public Tblpersona() {
     }
 
+    public Tblpersona(String nombre, String apellido, String papelVideo, String descripcion, int edad, String pais, String premios) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.papelVideo = papelVideo;
+        this.descripcion = descripcion;
+        this.edad = edad;
+        this.pais = pais;
+        this.premios = premios;
+    }
+
     public Tblpersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
@@ -198,5 +208,5 @@ public class Tblpersona implements Serializable {
     public String toString() {
         return "co.edu.uniminuto.video_monito_ejb.entities.Tblpersona[ idPersona=" + idPersona + " ]";
     }
-    
+
 }
