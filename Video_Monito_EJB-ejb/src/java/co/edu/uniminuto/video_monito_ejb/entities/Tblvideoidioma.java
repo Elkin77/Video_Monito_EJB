@@ -42,6 +42,12 @@ public class Tblvideoidioma implements Serializable {
     public Tblvideoidioma() {
     }
 
+    public Tblvideoidioma(Tblidioma tblidioma, Tblvideo tblvideo) {
+        this.tblidioma = tblidioma;
+        this.tblvideo = tblvideo;
+    }
+
+    
     public Tblvideoidioma(TblvideoidiomaPK tblvideoidiomaPK) {
         this.tblvideoidiomaPK = tblvideoidiomaPK;
     }

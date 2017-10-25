@@ -5,7 +5,7 @@
  */
 package co.edu.uniminuto.video_monito_ejb.controlador;
 
-import static co.edu.uniminuto.video_monito_ejb.entities.Tblcategoria_.descripcion;
+
 import co.edu.uniminuto.video_monito_ejb.entities.Tblserie;
 import co.edu.uniminuto.video_monito_ejb.entities.TblserieFacade;
 import co.edu.uniminuto.video_monito_ejb.entities.Tblvideo;

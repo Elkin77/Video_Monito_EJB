@@ -63,8 +63,15 @@ public class PersonasVideo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("./personas.jsp").forward(request, response);
+        this.cargarPersonas(request, response);
 
+    }
+
+    private void cargarPersonas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<Tblpersona> personas = tblpersonaFacade.findAll();
+        request.setAttribute("listPersonas", personas);
+        request.getRequestDispatcher("./personas.jsp").forward(request, response);
     }
 
     /**
@@ -90,7 +97,7 @@ public class PersonasVideo extends HttpServlet {
         Tblpersona person = new Tblpersona(Integer.parseInt(id), nombre, apellido, papel, descripcion, edad, pais, premios);
         tblpersonaFacade.create(person);
 
-        request.getRequestDispatcher("./personas.jsp").forward(request, response);
+        this.cargarPersonas(request, response);
     }
 
     /**

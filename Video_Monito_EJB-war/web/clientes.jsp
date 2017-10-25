@@ -10,28 +10,96 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestionar Clientes</title>
+        <title>VideoMONITO</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosGeneral.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosAgregarColeccion.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script><!-- Codigo fuente Jquery -->
+        <!-- <script src="{% static 'js/jQuery.js' %}"></script> -->
+        <script src="js/ScriptsGeneral.js"></script>
+        <script src="js/ScriptsIndex.js"></script>
+        <script src="js/ScriptsPagPrincAdmin.js"></script>
     </head>
-    <body>
-        <h1>Gestión de Clientes</h1>
-        <section>
-            <form action="./Clientes" method="POST">
-                <div><input type="hidden" name="id" value="${cliente.getIdCliente()}"></div>
-                <div><label for="nombre">Nombre: </label><input type="text" name="nombre" value="${cliente.getNombre()}"></div>
-                <div><label for="apellido">Apellido: </label><input type="text" name="apellido" value="${cliente.getApellido()}"></div>
-                <div><label for="password">Password:</label><input type="text" name="password" value="${cliente.getPassword()}"></div>
-                <div><label for="documento">Documento: </label><input type="text" name="documento" value="${cliente.getDocumento()}"></div>
+    <body class="cuerpo">
 
-                <div><label for="correo">Correo: </label><input type="text" name="correo" value="${cliente.getCorreo()}"></div>
-                <div><label for="referido">Referido: </label><input type="text" name="referido" value="${cliente.getReferido()}"></div>
-                <div><label for="puntos">Puntos </label><input type="text" name="puntos" value="${cliente.getPuntos()}"></div>
+        <header>
+            <div class="wrapper">
+                <div class="titulo">VideoMONITO</div>
+                <nav class="iconos">
+                    <a href="#" ><i class="fa fa-user" aria-hidden="true"></i></a>
+                    <a href="#" ><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </nav>
+            </div>
+        </header>
 
-                <input type="submit" value="Registrar! ">
-            </form>
-        </section>
+
+        <div class="contenedorAgregarVideo">
+            <fieldset>
+                <legend>Gestionar Clientes</legend>
+
+                <form action="./Clientes" method="POST">
+                    <div><input type="hidden" name="id" value="${cliente.getIdCliente()}"></div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputNombre" class="control-label labels">Nombre: </label> 
+                            <input type="text" class="form-control form" id="inputNombre" name="nombre" value="${cliente.getNombre()}">
+                        </div>                    
+                    </div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputApellido" class="control-label labels">Apellido: </label> 
+                            <input type="text" class="form-control form" id="inputApellido" name="apellido" value="${cliente.getApellido()}">
+                        </div>                    
+                    </div>
+
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputPass" class="control-label labels">Password: </label> 
+                            <input type="text" class="form-control form" id="inputPass" name="password" value="${cliente.getPassword()}">
+                        </div>                    
+                    </div>
+
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputDocumento" class="control-label labels">Documento: </label> 
+                            <input type="text" class="form-control form" id="inputDocumento" name="documento" value="${cliente.getDocumento()}">
+                        </div>                    
+                    </div>
+
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputCorreo" class="control-label labels">Correo: </label> 
+                            <input type="text" class="form-control form" id="inputCorreo" name="correo" value="${cliente.getCorreo()}">
+                        </div>                    
+                    </div> 
+
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputReferido" class="control-label labels">Referido: </label> 
+                            <input type="text" class="form-control form" id="inputReferido" name="referido" value="${cliente.getReferido()}">
+                        </div>                    
+                    </div> 
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputPuntos" class="control-label labels">Puntos: </label> 
+                            <input type="text" class="form-control form" id="inputPuntos" name="puntos" value="${cliente.getPuntos()}">
+                        </div>                    
+                    </div> 
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2">
+                            <input type="submit" class="btn btn-default boton" name="guardar" value="Agregar Cliente">
+                        </div>
+                    </div>
+
+                </form>
+
+            </fieldset>
+        </div>
+        
         <section>
-            <table>
+            <table class="table">
                 <thead>
                 <th>id</th>
                 <th>nombre</th>

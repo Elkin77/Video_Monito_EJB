@@ -47,6 +47,12 @@ public class Tblvideopersona implements Serializable {
     public Tblvideopersona() {
     }
 
+    public Tblvideopersona(Integer idVideo, Tblpersona idPersona) {
+        this.idVideo = idVideo;
+        this.idPersona = idPersona;
+    }
+    
+
     public Tblvideopersona(Integer idVideo) {
         this.idVideo = idVideo;
     }

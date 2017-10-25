@@ -33,6 +33,12 @@ public class TblvideoidiomaPK implements Serializable {
     public TblvideoidiomaPK() {
     }
 
+    public TblvideoidiomaPK(int idVideo, int idIdioma) {
+        this.idVideo = idVideo;
+        this.idIdioma = idIdioma;
+    }
+
+    
     public TblvideoidiomaPK(int idVideoIdioma, int idVideo, int idIdioma) {
         this.idVideoIdioma = idVideoIdioma;
         this.idVideo = idVideo;
