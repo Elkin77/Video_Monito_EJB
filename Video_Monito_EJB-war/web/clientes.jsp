@@ -65,17 +65,17 @@
                         <td><%=cliente.getReferido()%></td>
                         <td><%=cliente.getPuntos()%></td>
                         <td><a href="./Clientes?id=<%=cliente.getIdCliente()%>">editar</a> |
-                <form action="./Clientes" method="POST">
-                    <input type="hidden" name="id" value="<%=cliente.getIdCliente()%>">
-                    <input type="hidden" name="eliminar" value="true">
-                    <input type="submit" value="Eliminar">
-                    </td>
+                            <form action="./Clientes" method="POST">
+                                <input type="hidden" name="id2" value="<%=cliente.getIdCliente()%>">
+                                <input type="hidden" name="delete" value="true">
+                                <input type="submit" value="Eliminar">
+                                </td>
 
-                </form>
-                </tr>
-                <%
-                    }
-                %>
+                            </form>
+                    </tr>
+                    <%
+                        }
+                    %>
 
 
                 </tbody>

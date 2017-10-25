@@ -86,12 +86,9 @@ public class PersonasVideo extends HttpServlet {
         int edad = Integer.parseInt(request.getParameter("edad"));
         String pais = request.getParameter("pais");
         String premios = request.getParameter("premios");
-        
-        if (id == null || id.isEmpty()) {
-            Tblpersona person = new Tblpersona(nombre, apellido, papel, descripcion, edad, pais, premios);
-            tblpersonaFacade.create(person);
 
-        }
+        Tblpersona person = new Tblpersona(Integer.parseInt(id), nombre, apellido, papel, descripcion, edad, pais, premios);
+        tblpersonaFacade.create(person);
 
         request.getRequestDispatcher("./personas.jsp").forward(request, response);
     }

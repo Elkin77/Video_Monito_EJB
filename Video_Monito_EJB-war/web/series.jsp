@@ -11,23 +11,74 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+       <head>
+        <title>VideoMONITO</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosGeneral.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosAgregarSerie.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script><!-- Codigo fuente Jquery -->
+        <!-- <script src="{% static 'js/jQuery.js' %}"></script> -->
+        <script src="js/ScriptsGeneral.js"></script>
+        <script src="js/ScriptsIndex.js"></script>
+        <script src="js/ScriptsPagPrincAdmin.js"></script>
     </head>
-    <body>
-        <h1>Gestión de Series</h1>
-        <section>
-        <form action="./Series" method="POST">
-            <div><input type="hidden" name="id" value=""></div>
-            <div><label for="temporada">Temporada:</label><input type="text" name="temporada"></div>
-            <div><label for="nombre">Nombre:</label><input type="text" name="nombre"></div>
-            <div><label for="estado">Estado:</label><input type="text" name="estado"></div>
-            <div><label for="fechaIn">Fecha Inicio: </label><input type="text" name="fechaIn"></div>
-            <div><label for="fechaFi">Fecha Fin: </label><input type="text" name="fechaFi"></div>
-            <input type="submit" value="Registrar! ">
-        </form>
-        </section>
-        <section>
+    </head>
+    <body class="cuerpo">
+        <header>
+            <div class="wrapper">
+                <div class="titulo">VideoMONITO</div>
+                <nav class="iconos">
+                    <a href="#" ><i class="fa fa-user" aria-hidden="true"></i></a>
+                    <a href="#" ><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </nav>
+            </div>
+        </header>
+        
+        <div class="contenedorAgregarVideo">
+            <fieldset>
+                <legend>Agregar Serie</legend>
+                <form action="./Series" method="POST">
+                    <div><input type="hidden" name="id" value=""></div>
+                    <div class="arriba">
+                        <div class="form-group">
+                            <label for="inputNombre" class="control-label labels">Nombre</label>
+                                <input type="text" class="form-control form" id="inputNombre" name="nombre" placeholder="Nombre">
+                        </div>
+                    </div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputTemporada" class="control-label labels">Temporada</label>
+                                <input type="number" class="form-control form" id="inputTemporada" name="temporada" min="1" max="16" placeholder="Temporada">
+                        </div>
+                    </div>
+
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputEstado" class="control-label labels">Estado</label>
+                                <input type="text" class="form-control form" id="inputEstado" name="estado" placeholder="Estado">
+                        </div>
+                    </div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputFechaInicio" class="control-label labels">Fecha Inicio</label>
+                                <input type="text" class="form-control form" id="inputFechaInicio" name="fechaIn" placeholder="Fecha Inicio">
+                        </div>
+                    </div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputFechaFinal" class="control-label labels">Fecha Final</label>
+                                <input type="text" class="form-control form" id="inputFechaFinal" name="fechaFi" placeholder="Fecha Final">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <input type="submit" class="btn btn-default boton" name="guardar" value="Agregar Serie">
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+              <section>
             <table>
                 <thead>
                 <th>id</th>
@@ -70,5 +121,9 @@
 
 
         </section>
+        </div>
+        
+        
+      
     </body>
 </html>

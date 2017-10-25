@@ -1,13 +1,18 @@
-*{margin: 0; padding:0;}
+*{margin:0; padding:0;}
 
-.cuerpo{
-	background-color: #f7f7f7;
+body {
+	margin: 0;
+	padding: 0;
+	background: #fffffa;
+	min-height: 100vh;
 }
 
 header{
 	width: 100%;
 	overflow: hidden;
+	display: flex;
 	background: #4267B2;
+	margin-bottom: 10px;
 	position: fixed;
 }
 
@@ -17,13 +22,21 @@ header{
 	margin: auto; /*Esta linea centra el codigo y le coloca margin en la izquierda como en la Derecha*/
 	overflow: hidden;
 }
-
-header .logo{
+/*Si el Logo es de texto*/
+header .titulo{
 	color: #f2f2f2;
 	font-size: 50px;
 	line-height: 100px;
 	float: left;
 }
+
+header .logo img{
+	width: 250px;
+	padding: 10px;
+	line-height: 100px;
+	float: left;
+}
+
 
 header nav{
 	float: right;
@@ -32,7 +45,7 @@ header nav{
 
 header .iconos a{
 	display: inline-block;
-	color: #fff;
+	color: #f2f2f2;
 	text-decoration: none;
 	padding: 20px 20px;
 	line-height: normal;
@@ -46,11 +59,11 @@ header .iconos a{
 /*Estilos si en vez de tener iconos, tiene letras*/
 header .menu a{
 	display: inline-block;
-	color: #fff;
+	color: #f2f2f2;
 	text-decoration: none;
 	padding: 10px 20px;
 	line-height: normal;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
 	-webkit-transition: all 500ms ease;
 	-o-transition: all 500ms ease;
@@ -59,27 +72,6 @@ header .menu a{
 }
 /*Esto se pasara a los estilos del index de cada Usuario*/
 header .menu a:hover{
-	background: #fff;
+	background: #f2f2f2;
 	color: #4267B2;
-}
-
-.contenido p{/*Mejorar el diseño del contenido*/
-	margin-bottom: 1em;
-}
-
-@media screen and (max-width: 950px){
-	header .logo,
-	header nav{
-		width: 100%,
-		text-align:  center;
-		line-height: 100px;
-
-	}
-	.header2{
-		height: auto;
-	}
-	.header2 .logo,
-	.header2 nav{
-		line-height: 50px;
-	}
 }

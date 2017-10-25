@@ -10,22 +10,68 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>VideoMONITO</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosGeneral.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosAgregarColeccion.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script><!-- Codigo fuente Jquery -->
+        <!-- <script src="{% static 'js/jQuery.js' %}"></script> -->
+        <script src="js/ScriptsGeneral.js"></script>
+        <script src="js/ScriptsIndex.js"></script>
+        <script src="js/ScriptsPagPrincAdmin.js"></script>
     </head>
-    <body>
-       <h1>Gestión de Colecciones</h1>
-        <section>
-        <form action="./Colecciones" method="POST">
-            <div><input type="hidden" name="id" value=""></div>
-            <div><label for="coleccion">Colección: </label><input type="text" name="coleccion"></div>
-            <div><label for="version">Version: </label><input type="text" name="version"></div>
-            <div><label for="fechaCreacion">fecha Creacion: </label><input type="text" name="fechaCreacion"></div>
-            <div><label for="estado">Estado: </label><input type="text" name="estado"></div>
-           
-            <input type="submit" value="Registrar! ">
-        </form>
-        </section>
+    <body class="cuerpo">
+        <header>
+            <div class="wrapper">
+                <div class="titulo">VideoMONITO</div>
+                <nav class="iconos">
+                    <a href="#" ><i class="fa fa-user" aria-hidden="true"></i></a>
+                    <a href="#" ><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </nav>
+            </div>
+        </header>
+        
+        <div class="contenedorAgregarVideo">
+            <fieldset>
+                <legend>Agregar Coleccion</legend>
+                <form action="./Colecciones" method="POST">
+                    <div><input type="hidden" name="id" value=""></div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputColeccion" class="control-label labels">Colección</label>
+                                <input type="text" class="form-control form" id="inputColeccion" name="coleccion" placeholder="Coleccion">
+                        </div>
+                    </div>
+
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputVersion" class="control-label labels">Version</label>
+                                <input type="text" class="form-control form" id="inputVersion" name="version" placeholder="Version">
+                        </div>
+                    </div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputFechaCreacion" class="control-label labels">Fecha Creacion</label>
+                                <input type="text" class="form-control form" id="inputFechaCreacion" name="fechaCreacion" placeholder="Fecha Creacion">
+                        </div>
+                    </div>
+                    <div class="left">
+                        <div class="form-group">
+                            <label for="inputEstado" class="control-label labels">Estado</label>
+                                <input type="text" class="form-control form" id="inputEstado" name="estado" placeholder="Estado">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <input type="submit" class="btn btn-default boton" name="guardar" value="Agregar Coleccion">
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+             
+       <h1>Lista</h1>
+        
         <section>
             <table>
                 <thead>
@@ -69,5 +115,8 @@
 
 
         </section>
+        </div>
+        
+       
     </body>
 </html>
