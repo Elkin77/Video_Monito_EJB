@@ -5,11 +5,10 @@
  */
 package co.edu.uniminuto.video_monito_ejb.controlador;
 
-import co.edu.uniminuto.video_monito_ejb.entities.Tblcliente;
-import co.edu.uniminuto.video_monito_ejb.entities.TblclienteFacade;
+import co.edu.uniminuto.video_monito_ejb.entities.Tblserie;
+import co.edu.uniminuto.video_monito_ejb.entities.TblserieFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ep77
  */
-public class Clientes extends HttpServlet {
+public class Series extends HttpServlet {
 
     @EJB
-    private TblclienteFacade tblclienteFacade;
+    private TblserieFacade tblserieFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,15 +42,14 @@ public class Clientes extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Clientes</title>");
+            out.println("<title>Servlet Series</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Clientes at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Series at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -65,20 +63,14 @@ public class Clientes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("id")!= null && !request.getParameter("id").isEmpty()){
-           
-            Tblcliente cliente = tblclienteFacade.find(Integer.parseInt(request.getParameter("id")));
-            request.setAttribute("cliente", cliente);
-        }
-        this.cargarClientes(request, response);
+        this.cargarSeries(request, response);
     }
-    
-    private void  cargarClientes (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void  cargarSeries (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
        
         
-        List<Tblcliente> clientes =tblclienteFacade.findAll();
-        request.setAttribute("clientes", clientes);
-        request.getRequestDispatcher("./clientes.jsp").forward(request, response);
+        List<Tblserie> series =tblserieFacade.findAll();
+        request.setAttribute("series", series);
+        request.getRequestDispatcher("./series.jsp").forward(request, response);
     }
 
     /**
@@ -92,38 +84,20 @@ public class Clientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        java.util.Date d = new java.util.Date();
-        java.sql.Date date2 = new java.sql.Date(d.getTime());
-
         String id = request.getParameter("id");
+        String temporada = request.getParameter("temporada");
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String password = request.getParameter("password");
-        String documento = request.getParameter("documento");
-        Date fecha_ingreso = date2;
-        String correo = request.getParameter("correo");
-        String referido = request.getParameter("referido");
-        int puntos = Integer.parseInt(request.getParameter("puntos"));
-        String eliminar =request.getParameter("eliminar");
+        String estado = request.getParameter("estado");
+        String fechaInicio = request.getParameter("fechaIn");
+        String fechaFin = request.getParameter("fechaFi");
 
-        if(eliminar != null && eliminar.equals("true")){
-            Tblcliente cliente = tblclienteFacade.find(Integer.parseInt(id));
-            tblclienteFacade.remove(cliente);
-            this.cargarClientes(request, response);
-        }
-        
         if (id == null || id.isEmpty()) {
-            Tblcliente cliente = new Tblcliente(nombre, apellido, password, documento, fecha_ingreso, correo, referido, puntos);
-            tblclienteFacade.create(cliente);
+            Tblserie serie = new Tblserie(temporada, nombre, estado, fechaInicio, fechaFin);
+            tblserieFacade.create(serie);
 
-        }else{
-            Tblcliente cliente = new Tblcliente(Integer.parseInt(id), nombre, apellido, password, documento,fecha_ingreso, correo, referido, puntos);
-            tblclienteFacade.edit(cliente);
         }
-        this.cargarClientes(request, response);
+        this.cargarSeries(request, response);
     }
-    
-  
 
     /**
      * Returns a short description of the servlet.

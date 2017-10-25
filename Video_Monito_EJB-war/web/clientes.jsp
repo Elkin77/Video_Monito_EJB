@@ -17,15 +17,15 @@
         <h1>Gestión de Clientes</h1>
         <section>
             <form action="./Clientes" method="POST">
-                <div><input type="hidden" name="id" value=""></div>
-                <div><label for="nombre">Nombre: </label><input type="text" name="nombre"></div>
-                <div><label for="apellido">Apellido: </label><input type="text" name="apellido"></div>
-                <div><label for="password">Password:</label><input type="text" name="password"></div>
-                <div><label for="documento">Documento: </label><input type="text" name="documento"></div>
+                <div><input type="hidden" name="id" value="${cliente.getIdCliente()}"></div>
+                <div><label for="nombre">Nombre: </label><input type="text" name="nombre" value="${cliente.getNombre()}"></div>
+                <div><label for="apellido">Apellido: </label><input type="text" name="apellido" value="${cliente.getApellido()}"></div>
+                <div><label for="password">Password:</label><input type="text" name="password" value="${cliente.getPassword()}"></div>
+                <div><label for="documento">Documento: </label><input type="text" name="documento" value="${cliente.getDocumento()}"></div>
 
-                <div><label for="correo">Correo: </label><input type="text" name="correo"></div>
-                <div><label for="referido">Referido: </label><input type="text" name="referido"></div>
-                <div><label for="puntos">Puntos </label><input type="text" name="puntos"></div>
+                <div><label for="correo">Correo: </label><input type="text" name="correo" value="${cliente.getCorreo()}"></div>
+                <div><label for="referido">Referido: </label><input type="text" name="referido" value="${cliente.getReferido()}"></div>
+                <div><label for="puntos">Puntos </label><input type="text" name="puntos" value="${cliente.getPuntos()}"></div>
 
                 <input type="submit" value="Registrar! ">
             </form>
@@ -42,6 +42,7 @@
                 <th>correo</th>
                 <th>referido</th>
                 <th>puntos</th>
+                <th>acciones</th>
 
                 </thead>
                 <tbody>
@@ -49,11 +50,11 @@
                         Vector<Tblcliente> listaClientes = (Vector<Tblcliente>) request.getAttribute("clientes");
 
                     %>
-                    
 
-                        <%                        for (Tblcliente cliente : listaClientes) {%>
 
-<tr>
+                    <%                        for (Tblcliente cliente : listaClientes) {%>
+
+                    <tr>
                         <td><%=cliente.getIdCliente()%></td>
                         <td><%=cliente.getNombre()%></td>
                         <td><%=cliente.getApellido()%></td>
@@ -63,11 +64,19 @@
                         <td><%=cliente.getCorreo()%></td>
                         <td><%=cliente.getReferido()%></td>
                         <td><%=cliente.getPuntos()%></td>
-</tr>
-                        <%
-                            }
-                        %>
-                   
+                        <td><a href="./Clientes?id=<%=cliente.getIdCliente()%>">editar</a> |
+                <form action="./Clientes" method="POST">
+                    <input type="hidden" name="id" value="<%=cliente.getIdCliente()%>">
+                    <input type="hidden" name="eliminar" value="true">
+                    <input type="submit" value="Eliminar">
+                    </td>
+
+                </form>
+                </tr>
+                <%
+                    }
+                %>
+
 
                 </tbody>
 

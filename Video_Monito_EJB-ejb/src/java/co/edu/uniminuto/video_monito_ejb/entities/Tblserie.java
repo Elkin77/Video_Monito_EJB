@@ -69,6 +69,15 @@ public class Tblserie implements Serializable {
     public Tblserie() {
     }
 
+    public Tblserie(String temporada, String nombre, String estado, String fechaInicio, String fechaFinal) {
+        this.temporada = temporada;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+    }
+    
+
     public Tblserie(Integer idSerie) {
         this.idSerie = idSerie;
     }

@@ -1,0 +1,91 @@
+.wrapper .navBar a i{
+	font-size: 55px;
+	margin-right: 10px;
+}
+
+#formLogin{
+	background: #4267B2;
+	position: absolute;
+	top: 20%;
+	left: 28%;
+	width: 40%;
+	height: 55%;
+	margin: 3%;
+	padding-top: 4%;
+	border-radius:15px;
+}
+
+#formLogin fieldset{
+	margin: 6%;
+	margin-right: 15%; 
+	margin-left: 15%;
+	border-radius: 50px;
+}
+
+#formLogin input{
+	margin-bottom: 3%;
+}
+#contenedor{
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.btn.btn-default.boton{
+	position: absolute;
+	top: 65%;
+	left: 40%;
+	width: 20%;
+}
+
+#links nav{/*Definir el tamaño y posicion del nav*/
+	line-height: 100px;
+}
+
+#links nav a{/*Modificar los campos de nav para que se vean como un nav bar*/
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+	padding: 10px 20px;
+	line-height: normal;
+	font-size: 15px;
+	font-weight: bold;
+	-webkit-transition:all 500ms ease;/*Aplicar animacion al momento de pasar por cada uno de los nav*/
+	-o-transition:all 500ms ease;/*Aplicar animacion al momento de pasar por cada uno de los nav*/
+	transition:all 500ms ease;/*Aplicar animacion al momento de pasar por cada uno de los nav*/
+}
+
+#links nav a:hover{/*Aplicar que cuando el raton este en algun nav, este cambie de color*/
+	background: #f7f7f7;
+	color: #4267B2;
+	border-radius: 50px;/*Cambiar la caja cuadrada a circular*/
+
+}
+
+.posLeft{
+	float: left;
+	margin-top: 7%;
+	margin-left: 4%;
+}
+
+.posRigth{
+	margin-top: 7%;
+	margin-right: 4%;
+	float: right;
+}
+
+
+
+.alert.alert-dismissible.alert-danger.alerta{
+	background: #f09609;
+	color: #fff;
+	position: absolute;
+	left: 30%;
+	top: 20%;
+}
+.alert.alert-dismissible.alert-danger.alerta .alert-link{
+	color: #000;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cliente VideoMONITO</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosGeneral.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosIndex.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/EstilosPagPrincCliente.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script><!-- Codigo fuente Jquery -->
+        <!-- <script src="{% static 'js/jQuery.js' %}"></script> -->
+        <script src="js/ScriptsGeneral.js"></script>
+        <script src="js/ScriptsIndex.js"></script>
+        <script src="js/ScriptsPagPrincAdmin.js"></script>
+
+    </head>
+    <body class="cuerpo">
+        <header>
+            <div class="wrapper">
+                <div class="logo">VideoMONITO</div>
+                <nav class="iconos">
+                    <a href="#" ><i class="fa fa-user" aria-hidden="true"></i></a>
+                    <a href="#" ><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </nav>
+                <nav class="menu">
+                    <a href="#" >Calificar Video</a>
+                    <a href="#" >Referir Cliente</a>
+                </nav>
+            </div>
+        </header>
+        <div class="contenedor-menu">
+            <form action="" method="POST">
+                <div class="busqueda">
+                    <i class="fa fa-search searchImagen" aria-hidden="true"></i><input class="form-control" id="inputBusqueda" placeholder="Buscar Nombre Video" type="text">
+                </div>
+                <div class="caractIzq">
+                    <select name ="tipoVideo" class="selectOption">
+                        <option value="#">Pelicula</option>
+                        <option value="#">Serie</option>
+                        <option value="#">Coleccion</option>
+                        <option value="#">Tipo Video</option>
+                    </select>
+                    <select name ="year" class="selectOption">
+                        <option value="#">2017 - </option>
+                        <option value="#">2016 - </option>
+                        <option value="#">2015 - </option>
+                        <option value="#">2014 - </option>
+                        <option value="#">2013 - </option>
+                        <option value="#">2012 - </option>
+                        <option value="#">2011 - </option>
+                        <option value="#">2010 - </option>
+                        <option value="#">2009 - </option>
+                        <option value="#">2008 - </option>
+                        <option value="#">2007 - </option>
+                        <option value="#">2006 - </option>
+                        <option value="#">2005 - </option>
+                        <option value="#">2004 - </option>
+                        <option value="#">2003 - </option>
+                        <option value="#">2002 - </option>
+                        <option value="#">2001 - </option>
+                        <option value="#">2000 - </option>
+                        <option value="#">1999 - </option>
+                        <option value="#">Mas Antiguos</option>
+                        <option value="#">A&ntilde;o</option>
+                    </select>
+                    <input type="number" min="0" max="5" class="selectOption" placeholder="Valoracion"><br>
+                </div>
+                <div class="caractDer">
+                    <select name ="categoria" class="selectOption">
+                        <option value="#">Accion</option>
+                        <option value="#">Terror</option>
+                        <option value="#">Suspenso</option>
+                        <option value="#">Comedia</option>
+                        <option value="#">Infantil</option>
+                        <option value="#">Anime</option>
+                        <option value="#">Drama</option>
+                        <option value="#">Ficcion</option>
+                        <option value="#">Categoria</option>
+                    </select>
+                    <select name ="idioma" class="selectOption">
+                        <option value="#">Espa&ntilde;ol Latino</option>
+                        <option value="#">Español</option>
+                        <option value="#">Ingles</option>
+                        <option value="#">Frances</option>
+                        <option value="#">Aleman</option>
+                        <option value="#">Idioma</option>
+                    </select>
+                    <input type="number" min="60" max="240" class="selectOption" placeholder="Duracion(M)"><br>
+                </div>
+
+                <div class="btnBuscar">
+                    <input type="submit" class="btn btn-default buscar" name="buscar" value="Buscar">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

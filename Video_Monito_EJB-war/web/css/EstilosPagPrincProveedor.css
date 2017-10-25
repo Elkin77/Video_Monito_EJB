@@ -1,0 +1,36 @@
+.contenedorProveedor{
+	width: 100%;
+	height: 100;
+	padding:10%;
+}
+
+.contenedorProveedor fieldset{
+	background-color: #4267B2;
+	width: 100%;
+	height: 100%;
+}
+.contenedorProveedor fieldset legend{
+	color: #4267B2;
+	font-family: bold;
+}
+.der{
+	float: left;
+	width: 50%;
+	margin-bottom: 5%;
+}
+
+.izq{
+	float: right;
+	width: 50%;
+	margin-bottom: 5%;
+}
+
+.btn.btn-default.botonProveedor{
+	width: 60%;
+	height: 50%;
+	margin: 5%;
+	margin-left: 20%;
+	margin-top: 10%;
+	padding: 5%;
+	font-size: 30px;
+}
